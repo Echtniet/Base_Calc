@@ -14,8 +14,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnTimeConverter = findViewById(R.id.btnBaseConverter);
+        Button btnTimeConverter = findViewById(R.id.btnTimeConverter);
         btnTimeConverter.setOnClickListener(this);
+
+        Button btnBaseConverter = findViewById(R.id.btnBaseConverter);
+        btnBaseConverter.setOnClickListener(this);
     }
 
     @Override
