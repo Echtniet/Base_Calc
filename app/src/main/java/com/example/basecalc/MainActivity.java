@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btnBaseConverter = findViewById(R.id.btnBaseConverter);
         btnBaseConverter.setOnClickListener(this);
+
+        Button btnCalculator = findViewById(R.id.btnCalculator);
+        btnCalculator.setOnClickListener(this);
     }
 
     @Override
