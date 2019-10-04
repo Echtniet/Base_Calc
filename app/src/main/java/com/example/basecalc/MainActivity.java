@@ -21,7 +21,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnTimeConverter:
                 ini = new Intent(this, TimeConerter.class);
                 break;
+            case R.id.btnBaseConverter:
+                ini = new Intent(this, CoversionActivity.class);
         }
+
         startActivity(ini);
     }
 }
