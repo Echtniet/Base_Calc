@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CoversionActivity"></activity>
+        <activity android:name=".TimeConerter"></activity>
         <activity android:name=".Calulator" />
         <activity android:name=".MainActivity">
             <intent-filter>
