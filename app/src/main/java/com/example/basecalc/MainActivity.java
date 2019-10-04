@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnBaseConverter:
                 ini = new Intent(this, CoversionActivity.class);
+            case R.id.btnCalculator:
+                ini = new Intent(this, Calulator.class);
         }
 
         startActivity(ini);
