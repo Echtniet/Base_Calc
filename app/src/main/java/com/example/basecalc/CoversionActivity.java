@@ -19,4 +19,9 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
     public void onItemSelected(AdapterView<?> adapter, View v, int n, long l) {
 
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapter) {
+
+    }
 }
