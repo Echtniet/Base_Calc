@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.lang.reflect.Array;
 
 public class CoversionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
@@ -13,6 +17,21 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coversion);
+
+        String[] bases = {"Base 2", "Base 8", "Base 10", "Base 16"};
+
+        Spinner convertFrom = findViewById(R.id.sprFrom);
+        Spinner convertTo = findViewById(R.id.sprFrom2);
+        int layout = R.layout.support_simple_spinner_dropdown_item;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, layout, bases);
+
+        convertFrom.setOnItemSelectedListener(this);
+        convertTo.setOnItemSelectedListener(this);
+
+        convertFrom.setAdapter(adapter);
+        convertTo.setAdapter(adapter);
+
     }
 
     @Override
