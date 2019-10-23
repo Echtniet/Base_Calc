@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public int base;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,15 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     }
     @Override
     public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
-
+        if(pos == 0){
+            base = 2;
+        }else if(pos == 1){
+            base = 8;
+        }else if(pos == 2){
+            base = 10;
+        }else {
+            base = 16;
+        }
     }
 
     @Override
