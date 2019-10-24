@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public int base;
-    private TextView outputText = findViewById(R.id.txtResult);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("CALC-DEBUG", "onCreate: Entering");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calulator);
         String[] baseArray = {"Base 2", "Base 8", "Base 10", "Base 16"};
@@ -26,6 +26,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         ArrayAdapter<String> dropDown = new ArrayAdapter<>(this, layout, baseArray);
         mathBase.setOnItemSelectedListener(this);
         mathBase.setAdapter(dropDown);
+        Log.d("CALC-DEBUG", "onCreate: End");
     }
 
     @Override
@@ -38,6 +39,23 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             base = 10;
         }else {
             base = 16;
+        } recolorItems();
+    }
+
+    private void recolorItems(){
+        switch (base) {
+            case (2):
+
+                break;
+            case (8):
+
+                break;
+            case (10):
+
+                break;
+            case (16):
+
+                break;
         }
     }
 
@@ -47,6 +65,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     public void onItemClick(View v) {
+        TextView outputText = findViewById(R.id.txtResult);
         int viewId = v.getId();
         switch (viewId) {
             case (R.id.btn0):
