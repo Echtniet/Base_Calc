@@ -71,21 +71,26 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 findViewById(R.id.btnE),
                 findViewById(R.id.btnF)
         };
+        int mergePoint = 0;
         switch (base) {
             case (2):
-                for(int i = 0; i < btnArr.length; i++){
-//                    btnArr[i]
-                }
+                mergePoint = 0;
                 break;
             case (8):
-
+                mergePoint = 6;
                 break;
             case (10):
-
+                mergePoint = 8;
                 break;
             case (16):
-
+                mergePoint = 13;
                 break;
+        }
+        for(int bottom = 0; bottom < mergePoint; bottom++){
+
+        }
+        for(int top = mergePoint; top < btnArr.length; top++){
+
         }
     }
 
@@ -194,7 +199,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 ctrlInfo[0]++;
                 break;
             case (R.id.btnClear):
-                outputText.setText("");
+                outputText.setText("0");
                 ctrlInfo[0] = 0;
                 break;
             case (R.id.btnPM):
