@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public int base;
+    private TextView outputText = findViewById(R.id.txtResult);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,52 +50,52 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         int viewId = v.getId();
         switch (viewId) {
             case (R.id.btn0):
-
+                outputText.setText(outputText.getText().toString() + "0");
                 break;
             case (R.id.btn1):
-
+                outputText.setText(outputText.getText().toString() + "1");
                 break;
             case (R.id.btn2):
-
+                outputText.setText(outputText.getText().toString() + "2");
                 break;
             case (R.id.btn3):
-
+                outputText.setText(outputText.getText().toString() + "3");
                 break;
             case (R.id.btn4):
-
+                outputText.setText(outputText.getText().toString() + "4");
                 break;
             case (R.id.btn5):
-
+                outputText.setText(outputText.getText().toString() + "5");
                 break;
             case (R.id.btn6):
-
+                outputText.setText(outputText.getText().toString() + "6");
                 break;
             case (R.id.btn7):
-
+                outputText.setText(outputText.getText().toString() + "7");
                 break;
             case (R.id.btn8):
-
+                outputText.setText(outputText.getText().toString() + "8");
                 break;
             case (R.id.btn9):
-
+                outputText.setText(outputText.getText().toString() + "9");
                 break;
             case (R.id.btnA):
-
+                outputText.setText(outputText.getText().toString() + "a");
                 break;
             case (R.id.btnB):
-
+                outputText.setText(outputText.getText().toString() + "b");
                 break;
             case (R.id.btnC):
-
+                outputText.setText(outputText.getText().toString() + "c");
                 break;
             case (R.id.btnD):
-
+                outputText.setText(outputText.getText().toString() + "d");
                 break;
             case (R.id.btnE):
-
+                outputText.setText(outputText.getText().toString() + "e");
                 break;
             case (R.id.btnF):
-
+                outputText.setText(outputText.getText().toString() + "f");
                 break;
             case (R.id.btnClear):
 
