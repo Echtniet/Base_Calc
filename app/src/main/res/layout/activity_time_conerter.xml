@@ -7,7 +7,7 @@
     tools:context=".TimeConerter">
 
     <TextView
-        android:id="@+id/txtFrom4"
+        android:id="@+id/toTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To:"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.876" />
 
     <Spinner
-        android:id="@+id/sprFrom3"
+        android:id="@+id/timeForm1"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:entries="@array/datetimes"
@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.157" />
 
     <TextView
-        android:id="@+id/txtFrom5"
+        android:id="@+id/timeOutTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Output"
@@ -58,7 +58,7 @@
         app:layout_constraintVertical_bias="0.389" />
 
     <Spinner
-        android:id="@+id/sprFrom4"
+        android:id="@+id/timeForm2"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:entries="@array/datetimes"
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.157" />
 
     <TextView
-        android:id="@+id/txtTitle4"
+        android:id="@+id/titleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Base Calc"
@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.068" />
 
     <TextView
-        android:id="@+id/txtFrom6"
+        android:id="@+id/fromTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="From:"
