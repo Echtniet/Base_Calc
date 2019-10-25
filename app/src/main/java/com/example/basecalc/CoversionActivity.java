@@ -23,24 +23,19 @@ public class CoversionActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coversion);
 
-        Spinner convertFrom = findViewById(R.id.sprFrom);
-        Spinner convertTo = findViewById(R.id.sprFrom2);
+        final Button convertButton = findViewById(R.id.btnConvert);
+        convertButton.setOnClickListener(this);
 
         Log.d("Conversion Activity", "Activity Creation Finished");
-
-        final Button convertButton = findViewById(R.id.btnConvert);
-        convertButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                
-            }
-        });
-
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btnConvert) {
+        Spinner convertFrom = findViewById(R.id.sprFrom);
+        Spinner convertTo = findViewById(R.id.sprFrom2);
 
+        if (v.getId() == R.id.btnConvert) {
+            TextView outputText = findViewById(R.id.txtFrom3);
+            outputText.setText("");
         }
     }
 }
