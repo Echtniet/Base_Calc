@@ -33,6 +33,10 @@ public class CoversionActivity extends AppCompatActivity implements View.OnClick
         Spinner convertFrom = findViewById(R.id.sprFrom);
         Spinner convertTo = findViewById(R.id.sprFrom2);
 
+        int from = convertFrom.getSelectedItemPosition();
+        int to = convertTo.getSelectedItemPosition();
+        
+
         if (v.getId() == R.id.btnConvert) {
             TextView outputText = findViewById(R.id.txtFrom3);
             outputText.setText("");
