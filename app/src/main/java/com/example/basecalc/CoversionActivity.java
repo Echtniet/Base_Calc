@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 
@@ -38,9 +39,15 @@ public class CoversionActivity extends AppCompatActivity implements View.OnClick
         int to = base(convertTo.getSelectedItemPosition());
 
         if (v.getId() == R.id.btnConvert) {
-            TextView outputText = findViewById(R.id.txtFrom3);
-            EditText input = findViewById(R.id.etxtToConvert);
-            outputText.setText(BaseConverer.covertBase(input.getText().toString(), to, from));
+            try {
+                TextView outputText = findViewById(R.id.txtFrom3);
+                EditText input = findViewById(R.id.etxtToConvert);
+                outputText.setText(BaseConverer.covertBase(input.getText().toString(), to, from));
+            }
+            catch (Exception e) {
+                TextView outputText = findViewById(R.id.txtFrom3);
+                outputText.setText("Invalid base use");
+            }
         }
     }
 
