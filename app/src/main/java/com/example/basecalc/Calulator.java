@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private String answer;
     private int base = 10;
-    private CalcHitory hist = new CalcHitory();
     /*
         index 0: Num of items in current input buffer
+        index 1: Keeps track of the current number being positive or negative
      */
-    private int[] numCtrlInfo ={0};
+    private int[] numCtrlInfo ={0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,51 +115,37 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn2):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "2");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn3):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "3");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn4):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "4");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn5):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "5");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn6):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "6");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn7):
-                if(base == 2){
-                    break;
-                }
+                if(base == 2){ break; }
                 outputText.setText(outputText.getText().toString() + "7");
                 numCtrlInfo[0]++;
                 break;
             case (R.id.btn8):
-                if(base == 2 || base == 8){
-                    break;
-                }
+                if(base == 2 || base == 8){ break; }
                 outputText.setText(outputText.getText().toString() + "8");
                 numCtrlInfo[0]++;
                 break;
@@ -202,7 +189,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 numCtrlInfo[0] = 0;
                 break;
             case (R.id.btnPM):
-
+                if (numCtrlInfo[1] == 0){
+                    outputText.setText("- " + outputText.getText().toString());
+                    numCtrlInfo[1] = 1;
+                } else {
+                    outputText.setText(outputText.getText().toString().replace("- ", ""));
+                    numCtrlInfo[1] = 0;
+                }
                 break;
             case (R.id.btnPren):
 
@@ -217,7 +210,12 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
 
                 break;
             case (R.id.btnPlus):
-
+                if (answer == null){
+                    answer = outputText.getText().toString();
+                    break;
+                }
+                answer = BaseConverer.add(answer, outputText.getText().toString(), base);
+                outputText.setText(answer);
                 break;
             case (R.id.btnEquals):
 
