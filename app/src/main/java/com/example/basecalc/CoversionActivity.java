@@ -22,22 +22,16 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coversion);
 
-        String[] bases = {"Base 2", "Base 8", "Base 10", "Base 16"};
-
         Spinner convertFrom = findViewById(R.id.sprFrom);
         Spinner convertTo = findViewById(R.id.sprFrom2);
         int layout = R.layout.support_simple_spinner_dropdown_item;
 
         convertFrom.setSelection(0, false);
         convertTo.setSelection(1, false);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, layout, bases);
-
+        
         convertFrom.setOnItemSelectedListener(this);
         convertTo.setOnItemSelectedListener(this);
 
-        convertFrom.setAdapter(adapter);
-        convertTo.setAdapter(adapter);
 
         Log.d("Conversion Activity", "Activity Creation Finished");
 
