@@ -15,7 +15,7 @@ public class HitModel {
     private HitModel(){
         myHitory = new CalcHitory();
     }
-    
+
     private void loadHitModel(){
 
     }
