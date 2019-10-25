@@ -9,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,13 +34,13 @@ public class CoversionActivity extends AppCompatActivity implements View.OnClick
         Spinner convertFrom = findViewById(R.id.sprFrom);
         Spinner convertTo = findViewById(R.id.sprFrom2);
 
-        int from = convertFrom.getSelectedItemPosition();
-        int to = convertTo.getSelectedItemPosition();
-        
+        int from = base(convertFrom.getSelectedItemPosition());
+        int to = base(convertTo.getSelectedItemPosition());
 
         if (v.getId() == R.id.btnConvert) {
             TextView outputText = findViewById(R.id.txtFrom3);
-            outputText.setText("");
+            EditText input = findViewById(R.id.etxtToConvert);
+            outputText.setText(BaseConverer.covertBase(input.getText().toString(), to, from));
         }
     }
 
