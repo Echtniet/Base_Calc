@@ -63,14 +63,7 @@ public class TimeConerter extends AppCompatActivity {
     }
     public double secToOther(Double timeToConvert, int toPos){
         Double answer = 0.0;
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
+
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -103,165 +96,160 @@ public class TimeConerter extends AppCompatActivity {
         return answer;
     }
     public double minToOther(Double timeToConvert, int toPos){
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
         switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
             case 0:
 
                 break;
+            //Minutes
             case 1:
 
                 break;
+            //Hours
             case 2:
 
                 break;
+            //Days
             case 3:
 
                 break;
+            //Months
             case 4:
 
                 break;
+            //Years
             case 5:
 
                 break;
+            //How?
             default:
                 //HOW DID YOU GET HERE!
         }
         return 0;
     }
     public double hrsToOther(Double timeToConvert, int toPos){
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
         switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
             case 0:
 
                 break;
+            //Minutes
             case 1:
 
                 break;
+            //Hours
             case 2:
 
                 break;
+            //Days
             case 3:
 
                 break;
+            //Months
             case 4:
 
                 break;
+            //Years
             case 5:
 
                 break;
+            //How?
             default:
                 //HOW DID YOU GET HERE!
         }
         return 0;
     }
     public double daysToOther(Double timeToConvert, int toPos){
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
         switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
             case 0:
 
                 break;
+            //Minutes
             case 1:
 
                 break;
+            //Hours
             case 2:
 
                 break;
+            //Days
             case 3:
 
                 break;
+            //Months
             case 4:
 
                 break;
+            //Years
             case 5:
 
                 break;
+            //How?
             default:
                 //HOW DID YOU GET HERE!
         }
         return 0;
     }
     public double monthsToOther(Double timeToConvert, int toPos){
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
         switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
             case 0:
 
                 break;
+            //Minutes
             case 1:
 
                 break;
+            //Hours
             case 2:
 
                 break;
+            //Days
             case 3:
 
                 break;
+            //Months
             case 4:
 
                 break;
+            //Years
             case 5:
 
                 break;
+            //How?
             default:
                 //HOW DID YOU GET HERE!
         }
         return 0;
     }
     public double yearsToOther(Double timeToConvert, int toPos){
-        /*
-        0: Seconds
-        1: Minutes
-        2: Hours
-        3: Days
-        4: Months
-        5: Years
-         */
         switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
             case 0:
 
                 break;
+            //Minutes
             case 1:
 
                 break;
+            //Hours
             case 2:
 
                 break;
+            //Days
             case 3:
 
                 break;
+            //Months
             case 4:
 
                 break;
+            //Years
             case 5:
 
                 break;
+            //How?
             default:
                 //HOW DID YOU GET HERE!
         }
