@@ -4,8 +4,8 @@ package com.example.basecalc;
 // This class is used to house methods for base conversion
 public class BaseConverer {
 
-    public String baseConversion(int num, int base) {
-        return Integer.toString(num, base);
+    public String covertBase(String string, int baseTo, int baseFrom) {
+        return Integer.toString(Integer.parseInt(string, baseFrom), baseTo);
     }
 
 }
