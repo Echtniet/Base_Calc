@@ -3,6 +3,7 @@ package com.example.basecalc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -15,6 +16,8 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Conversion Activity", "Activity Creation Started");
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coversion);
 
@@ -32,6 +35,7 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
         convertFrom.setAdapter(adapter);
         convertTo.setAdapter(adapter);
 
+        Log.d("Conversion Activity", "Activity Creation Finished");
     }
 
     @Override
