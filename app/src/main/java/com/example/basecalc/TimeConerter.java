@@ -12,6 +12,7 @@ public class TimeConerter extends AppCompatActivity {
     private Spinner convertFrom;
     private Spinner convertTo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,8 @@ public class TimeConerter extends AppCompatActivity {
 
     }
     public void outputClicked(View v){
-        convertFrom = findViewById(R.id.timeForm1);
-        convertTo = findViewById(R.id.timeForm2);
+//        convertFrom = findViewById(R.id.timeForm1);
+//        convertTo = findViewById(R.id.timeForm2);
         EditText input = findViewById(R.id.txtToConvert2);
 
         /*
@@ -61,27 +62,209 @@ public class TimeConerter extends AppCompatActivity {
 
     }
     public double secToOther(Double timeToConvert, int toPos){
-
-        return 0;
+        Double answer = 0.0;
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            //Seconds
+            case 0:
+                answer = timeToConvert;
+                break;
+            //Minutes
+            case 1:
+                answer = timeToConvert/60;
+                break;
+            //Hours
+            case 2:
+                answer = timeToConvert/3600;
+                break;
+            //Days
+            case 3:
+                answer = timeToConvert/86400;
+                break;
+            //Months
+            case 4:
+                answer = timeToConvert/2.628e+6;
+                break;
+            //Years
+            case 5:
+                answer = timeToConvert/3.154e+7;
+                break;
+            //How?
+            default:
+                //HOW DID YOU GET HERE!
+        }
+        return answer;
     }
     public double minToOther(Double timeToConvert, int toPos){
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+                //HOW DID YOU GET HERE!
+        }
         return 0;
     }
     public double hrsToOther(Double timeToConvert, int toPos){
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+                //HOW DID YOU GET HERE!
+        }
         return 0;
     }
     public double daysToOther(Double timeToConvert, int toPos){
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+                //HOW DID YOU GET HERE!
+        }
         return 0;
     }
     public double monthsToOther(Double timeToConvert, int toPos){
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+                //HOW DID YOU GET HERE!
+        }
         return 0;
     }
     public double yearsToOther(Double timeToConvert, int toPos){
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        switch(convertTo.getSelectedItemPosition()) {
+            case 0:
 
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            default:
+                //HOW DID YOU GET HERE!
+        }
         return 0;
     }
 }
