@@ -199,27 +199,27 @@ public class TimeConerter extends AppCompatActivity {
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
-
+                answer = timeToConvert*2.628e+6;
                 break;
             //Minutes
             case 1:
-
+                answer = timeToConvert*43800.048;
                 break;
             //Hours
             case 2:
-
+                answer = timeToConvert*730.001;
                 break;
             //Days
             case 3:
-
+                answer = timeToConvert*30.417;
                 break;
             //Months
             case 4:
-
+                answer = timeToConvert;
                 break;
             //Years
             case 5:
-
+                answer = timeToConvert/12;
                 break;
             //How?
             default:
@@ -232,27 +232,27 @@ public class TimeConerter extends AppCompatActivity {
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
-
+                answer = timeToConvert*3.154e+7;
                 break;
             //Minutes
             case 1:
-
+                answer = timeToConvert*525600;
                 break;
             //Hours
             case 2:
-
+                answer = timeToConvert*8760;
                 break;
             //Days
             case 3:
-
+                answer = timeToConvert*365;
                 break;
             //Months
             case 4:
-
+                answer = timeToConvert*12;
                 break;
             //Years
             case 5:
-
+                answer = timeToConvert;
                 break;
             //How?
             default:
