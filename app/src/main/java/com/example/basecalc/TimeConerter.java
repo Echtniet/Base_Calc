@@ -96,6 +96,7 @@ public class TimeConerter extends AppCompatActivity {
         return answer;
     }
     public double minToOther(Double timeToConvert, int toPos){
+        Double answer = 0.0;
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -125,9 +126,10 @@ public class TimeConerter extends AppCompatActivity {
             default:
                 //HOW DID YOU GET HERE!
         }
-        return 0;
+        return answer;
     }
     public double hrsToOther(Double timeToConvert, int toPos){
+        Double answer = 0.0;
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -157,9 +159,10 @@ public class TimeConerter extends AppCompatActivity {
             default:
                 //HOW DID YOU GET HERE!
         }
-        return 0;
+        return answer;
     }
     public double daysToOther(Double timeToConvert, int toPos){
+        Double answer = 0.0;
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -189,9 +192,10 @@ public class TimeConerter extends AppCompatActivity {
             default:
                 //HOW DID YOU GET HERE!
         }
-        return 0;
+        return answer;
     }
     public double monthsToOther(Double timeToConvert, int toPos){
+        Double answer = 0.0;
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -221,9 +225,10 @@ public class TimeConerter extends AppCompatActivity {
             default:
                 //HOW DID YOU GET HERE!
         }
-        return 0;
+        return answer;
     }
     public double yearsToOther(Double timeToConvert, int toPos){
+        Double answer = 0.0;
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
@@ -253,6 +258,6 @@ public class TimeConerter extends AppCompatActivity {
             default:
                 //HOW DID YOU GET HERE!
         }
-        return 0;
+        return answer;
     }
 }
