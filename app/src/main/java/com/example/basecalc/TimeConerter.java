@@ -23,21 +23,32 @@ public class TimeConerter extends AppCompatActivity {
 
     }
     public void outputClicked(View v){
-        
+        convertFrom = findViewById(R.id.timeForm1);
+        convertTo = findViewById(R.id.timeForm2);
+
+        /*
+        0: Seconds
+        1: Minutes
+        2: Hours
+        3: Days
+        4: Months
+        5: Years
+         */
+        convertFrom.getSelectedItemPosition();
     }
-    public void secToOther(Double time1, Double time2){
+    public void secToOther(Double time1, Double time2, int toPos){
 
     }
-    public void minToOther(Double time1, Double time2){
+    public void minToOther(Double time1, Double time2, int toPos){
 
     }
-    public void hrsToOther(Double time1, Double time2){
+    public void hrsToOther(Double time1, Double time2, int toPos){
 
     }
-    public void daysToOther(Double time1, Double time2){
+    public void daysToOther(Double time1, Double time2, int toPos){
 
     }
-    public void monthsToOther(Float time1, Float time2){
+    public void monthsToOther(Float time1, Float time2, int toPos){
 
     }
 }
