@@ -9,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 
@@ -17,7 +18,7 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("Conversion Activity", "Activity Creation Started");
-        
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coversion);
 
@@ -26,6 +27,9 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
         Spinner convertFrom = findViewById(R.id.sprFrom);
         Spinner convertTo = findViewById(R.id.sprFrom2);
         int layout = R.layout.support_simple_spinner_dropdown_item;
+
+        convertFrom.setSelection(0, false);
+        convertTo.setSelection(1, false);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, layout, bases);
 
@@ -36,10 +40,15 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
         convertTo.setAdapter(adapter);
 
         Log.d("Conversion Activity", "Activity Creation Finished");
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
+        TextView display = findViewById(R.id.txtFrom3);
+        String displayText = display.getText().toString();
+
+
 
     }
 
