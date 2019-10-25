@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 
-public class CoversionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class CoversionActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +24,7 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
 
         Spinner convertFrom = findViewById(R.id.sprFrom);
         Spinner convertTo = findViewById(R.id.sprFrom2);
-        int layout = R.layout.support_simple_spinner_dropdown_item;
-
-        Log.d("Conversion Activity", "Activity Creation Finished");
-
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
-        TextView display = findViewById(R.id.txtFrom3);
-        String displayText = display.getText().toString();
 
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapter) {
-
-    }
 }
