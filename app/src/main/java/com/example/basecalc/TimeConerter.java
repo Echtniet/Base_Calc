@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class TimeConerter extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class TimeConerter extends AppCompatActivity {
     public void outputClicked(View v){
         convertFrom = findViewById(R.id.timeForm1);
         convertTo = findViewById(R.id.timeForm2);
+        EditText input = findViewById(R.id.txtToConvert2);
 
         /*
         0: Seconds
@@ -36,18 +38,25 @@ public class TimeConerter extends AppCompatActivity {
          */
         switch(convertFrom.getSelectedItemPosition()){
             case 0:
-                secToOther();
+                secToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 1:
+                minToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 2:
+                hrsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 3:
+                daysToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 4:
+                monthsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 5:
+                yearsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
+            default:
+                //HOW DID YOU GET HERE!
         }
 
     }
@@ -67,11 +76,11 @@ public class TimeConerter extends AppCompatActivity {
 
         return 0;
     }
-    public double monthsToOther(Float timeToConvert, int toPos){
+    public double monthsToOther(Double timeToConvert, int toPos){
 
         return 0;
     }
-    public double yearsToOther(Float timeToConvert, int toPos){
+    public double yearsToOther(Double timeToConvert, int toPos){
 
         return 0;
     }
