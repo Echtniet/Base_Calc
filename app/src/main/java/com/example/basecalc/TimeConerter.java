@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class TimeConerter extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class TimeConerter extends AppCompatActivity {
 //        convertFrom = findViewById(R.id.timeForm1);
 //        convertTo = findViewById(R.id.timeForm2);
         EditText input = findViewById(R.id.txtToConvert2);
+        TextView output = findViewById(R.id.timeOutTV);
+        Double converted = 0.0;
 
         /*
         0: Seconds
@@ -39,27 +42,27 @@ public class TimeConerter extends AppCompatActivity {
          */
         switch(convertFrom.getSelectedItemPosition()){
             case 0:
-                secToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = secToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 1:
-                minToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = minToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 2:
-                hrsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = hrsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 3:
-                daysToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = daysToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 4:
-                monthsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = monthsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 5:
-                yearsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = yearsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             default:
                 //HOW DID YOU GET HERE!
         }
-
+        output.setText(Double.toString(converted));
     }
     public double secToOther(Double timeToConvert, int toPos){
         Double answer = 0.0;
@@ -166,27 +169,27 @@ public class TimeConerter extends AppCompatActivity {
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
-
+                answer = timeToConvert*86400;
                 break;
             //Minutes
             case 1:
-
+                answer = timeToConvert*1440;
                 break;
             //Hours
             case 2:
-
+                answer = timeToConvert*24;
                 break;
             //Days
             case 3:
-
+                answer = timeToConvert;
                 break;
             //Months
             case 4:
-
+                answer = timeToConvert/30.417;
                 break;
             //Years
             case 5:
-
+                answer = timeToConvert/365;
                 break;
             //How?
             default:
@@ -199,27 +202,27 @@ public class TimeConerter extends AppCompatActivity {
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
-
+                answer = timeToConvert*2.628e+6;
                 break;
             //Minutes
             case 1:
-
+                answer = timeToConvert*43800.048;
                 break;
             //Hours
             case 2:
-
+                answer = timeToConvert*730.001;
                 break;
             //Days
             case 3:
-
+                answer = timeToConvert*30.417;
                 break;
             //Months
             case 4:
-
+                answer = timeToConvert;
                 break;
             //Years
             case 5:
-
+                answer = timeToConvert/12;
                 break;
             //How?
             default:
@@ -232,27 +235,27 @@ public class TimeConerter extends AppCompatActivity {
         switch(convertTo.getSelectedItemPosition()) {
             //Seconds
             case 0:
-
+                answer = timeToConvert*3.154e+7;
                 break;
             //Minutes
             case 1:
-
+                answer = timeToConvert*525600;
                 break;
             //Hours
             case 2:
-
+                answer = timeToConvert*8760;
                 break;
             //Days
             case 3:
-
+                answer = timeToConvert*365;
                 break;
             //Months
             case 4:
-
+                answer = timeToConvert*12;
                 break;
             //Years
             case 5:
-
+                answer = timeToConvert;
                 break;
             //How?
             default:
