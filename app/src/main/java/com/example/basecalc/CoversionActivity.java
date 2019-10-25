@@ -38,4 +38,25 @@ public class CoversionActivity extends AppCompatActivity implements View.OnClick
             outputText.setText("");
         }
     }
+
+    public int base(int selectedBase){
+        int base = 0;
+        switch (selectedBase){
+            case 0:
+                base = 2;
+                break;
+            case 1:
+                base = 8;
+                break;
+            case 2:
+                base = 10;
+                break;
+            case 3:
+                base = 16;
+                break;
+        }
+
+        return base;
+    }
+
 }
