@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class TimeConerter extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class TimeConerter extends AppCompatActivity {
 //        convertFrom = findViewById(R.id.timeForm1);
 //        convertTo = findViewById(R.id.timeForm2);
         EditText input = findViewById(R.id.txtToConvert2);
+        TextView output = findViewById(R.id.timeOutTV);
+        Double converted = 0.0;
 
         /*
         0: Seconds
@@ -39,27 +42,27 @@ public class TimeConerter extends AppCompatActivity {
          */
         switch(convertFrom.getSelectedItemPosition()){
             case 0:
-                secToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = secToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 1:
-                minToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = minToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 2:
-                hrsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = hrsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 3:
-                daysToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = daysToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 4:
-                monthsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = monthsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             case 5:
-                yearsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
+                converted = yearsToOther(Double.parseDouble(input.getText().toString()), convertTo.getSelectedItemPosition());
                 break;
             default:
                 //HOW DID YOU GET HERE!
         }
-
+        output.setText(Double.toString(converted));
     }
     public double secToOther(Double timeToConvert, int toPos){
         Double answer = 0.0;
