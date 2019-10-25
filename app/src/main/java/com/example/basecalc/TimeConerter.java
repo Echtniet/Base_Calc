@@ -34,7 +34,21 @@ public class TimeConerter extends AppCompatActivity {
         4: Months
         5: Years
          */
-        convertFrom.getSelectedItemPosition();
+        switch(convertFrom.getSelectedItemPosition()){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
+
     }
     public void secToOther(Double time1, Double time2, int toPos){
 
@@ -49,6 +63,9 @@ public class TimeConerter extends AppCompatActivity {
 
     }
     public void monthsToOther(Float time1, Float time2, int toPos){
+
+    }
+    public void yearsToOther(Float time1, Float time2, int toPos){
 
     }
 }
