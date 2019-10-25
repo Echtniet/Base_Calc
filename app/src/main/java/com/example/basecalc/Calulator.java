@@ -212,10 +212,11 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             case (R.id.btnPlus):
                 if (answer == null){
                     answer = outputText.getText().toString();
-                    break;
+                }else{
+                    answer = BaseConverer.add(answer, outputText.getText().toString(), base);
+                    outputText.setText(answer);
                 }
-                answer = BaseConverer.add(answer, outputText.getText().toString(), base);
-                outputText.setText(answer);
+                numCtrlInfo[0] = 0;
                 break;
             case (R.id.btnEquals):
 
