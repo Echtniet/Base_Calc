@@ -26,13 +26,6 @@ public class CoversionActivity extends AppCompatActivity implements AdapterView.
         Spinner convertTo = findViewById(R.id.sprFrom2);
         int layout = R.layout.support_simple_spinner_dropdown_item;
 
-        convertFrom.setSelection(0, false);
-        convertTo.setSelection(1, false);
-        
-        convertFrom.setOnItemSelectedListener(this);
-        convertTo.setOnItemSelectedListener(this);
-
-
         Log.d("Conversion Activity", "Activity Creation Finished");
 
     }
