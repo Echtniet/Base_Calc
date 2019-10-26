@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String answer;
+    private String operator;
     private int base = 10;
     /*
         index 0: Num of items in current input buffer
@@ -201,13 +202,34 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
 
                 break;
             case (R.id.btnDivide):
-
+                if (answer == null){
+                    answer = outputText.getText().toString();
+                }else{
+                    answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
+                    outputText.setText(answer);
+                }
+                numCtrlInfo[0] = 0;
+                operator = "/";
                 break;
             case (R.id.btnMul):
-
+                if (answer == null){
+                    answer = outputText.getText().toString();
+                }else{
+                    answer = BaseConverer.mul(outputText.getText().toString(), answer, base);
+                    outputText.setText(answer);
+                }
+                numCtrlInfo[0] = 0;
+                operator = "*";
                 break;
             case (R.id.btnMinus):
-
+                if (answer == null){
+                    answer = outputText.getText().toString();
+                }else{
+                    answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
+                    outputText.setText(answer);
+                }
+                numCtrlInfo[0] = 0;
+                operator = "-";
                 break;
             case (R.id.btnPlus):
                 if (answer == null){
@@ -217,9 +239,27 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     outputText.setText(answer);
                 }
                 numCtrlInfo[0] = 0;
+                operator = "+";
                 break;
             case (R.id.btnEquals):
-
+                if (operator == null){ break; }
+                switch (operator){
+                    case("+"):
+                        outputText.setText(BaseConverer.add(answer, outputText.getText().toString(), base));
+                        break;
+                    case("-"):
+                        outputText.setText(BaseConverer.sub(answer, outputText.getText().toString(), base));
+                        break;
+                    case("/"):
+                        outputText.setText(BaseConverer.divide(answer, outputText.getText().toString(), base));
+                        break;
+                    case("*"):
+                        outputText.setText(BaseConverer.mul(answer, outputText.getText().toString(), base));
+                        break;
+                }
+                operator = null;
+                numCtrlInfo[0] = 0;
+                numCtrlInfo[1] = 0;
                 break;
             case (R.id.btnDot):
 
