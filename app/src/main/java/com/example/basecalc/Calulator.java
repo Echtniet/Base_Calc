@@ -17,8 +17,11 @@ import static java.lang.Integer.parseInt;
 
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    // answer keeps track of the most recent item put into the calculator
     private String answer;
+    // operator keeps track of the most recent operator used
     private String operator;
+    // base holds the current base being used
     private int base = 10;
     /*
         index 0: Num of items in current input buffer
@@ -198,6 +201,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             case (R.id.btnClear):
                 outputText.setText("0");
                 numCtrlInfo[0] = 0;
+                numCtrlInfo[1] = 0;
                 break;
             case (R.id.btnPM):
                 if (numCtrlInfo[1] == 0){
@@ -215,6 +219,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (answer == null){
                     answer = outputText.getText().toString();
                 }else{
+                    Log.d("CALC-DEBUG", "onItemClick: Div: " + answer + " to " + outputText.getText().toString() + " in " + base);
                     answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
                     outputText.setText(answer);
                     HitModel.getModel().myHitory.add(parseInt(answer));
@@ -222,7 +227,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
                         edit.commit();
                     }catch(Exception e){
-
+                        Log.d("CALC-DEBUG", "onItemClick: " + e);
                     }
                 }
                 numCtrlInfo[0] = 0;
@@ -232,6 +237,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (answer == null){
                     answer = outputText.getText().toString();
                 }else{
+                    Log.d("CALC-DEBUG", "onItemClick: Mul: " + answer + " to " + outputText.getText().toString() + " in " + base);
                     answer = BaseConverer.mul(outputText.getText().toString(), answer, base);
                     outputText.setText(answer);
                     HitModel.getModel().myHitory.add(parseInt(answer));
@@ -239,7 +245,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
                         edit.commit();
                     }catch(Exception e){
-
+                        Log.d("CALC-DEBUG", "onItemClick: " + e);
                     }
                 }
                 numCtrlInfo[0] = 0;
@@ -249,6 +255,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (answer == null){
                     answer = outputText.getText().toString();
                 }else{
+                    Log.d("CALC-DEBUG", "onItemClick: Subtracting: " + answer + " to " + outputText.getText().toString() + " in " + base);
                     answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
                     outputText.setText(answer);
                     HitModel.getModel().myHitory.add(parseInt(answer));
@@ -256,7 +263,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
                         edit.commit();
                     }catch(Exception e){
-
+                        Log.d("CALC-DEBUG", "onItemClick: " + e);
                     }
                 }
                 numCtrlInfo[0] = 0;
@@ -266,6 +273,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (answer == null){
                     answer = outputText.getText().toString();
                 }else{
+                    Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
                     answer = BaseConverer.add(answer, outputText.getText().toString(), base);
                     outputText.setText(answer);
                     HitModel.getModel().myHitory.add(parseInt(answer));
@@ -273,7 +281,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
                         edit.commit();
                     }catch(Exception e){
-
+                        Log.d("CALC-DEBUG", "onItemClick: " + e);
                     }
                 }
                 numCtrlInfo[0] = 0;
@@ -283,15 +291,19 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (operator == null){ break; }
                 switch (operator){
                     case("+"):
+                        Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
                         answer = BaseConverer.add(outputText.getText().toString(), answer, base);
                         break;
                     case("-"):
+                        Log.d("CALC-DEBUG", "onItemClick: Subtract: " + answer + " to " + outputText.getText().toString() + " in " + base);
                         answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
                         break;
                     case("/"):
+                        Log.d("CALC-DEBUG", "onItemClick: Dividing: " + answer + " to " + outputText.getText().toString() + " in " + base);
                         answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
                         break;
                     case("*"):
+                        Log.d("CALC-DEBUG", "onItemClick: Multiply: " + answer + " to " + outputText.getText().toString() + " in " + base);
                         answer = BaseConverer.mul(answer, outputText.getText().toString(), base);
                         break;
                 }
@@ -301,7 +313,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
                     edit.commit();
                 }catch(Exception e){
-
+                    Log.d("CALC-DEBUG", "onItemClick: " + e);
                 }
                 operator = null;
                 numCtrlInfo[0] = 0;
