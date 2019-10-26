@@ -1,8 +1,12 @@
 package com.example.basecalc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class CalcHitory {
+public class CalcHitory implements Serializable {
     private LinkedList<Integer> history;
     private int size;
     public CalcHitory(){

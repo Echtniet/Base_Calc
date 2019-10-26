@@ -2,7 +2,9 @@ package com.example.basecalc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btnCalculator = findViewById(R.id.btnCalculator);
         btnCalculator.setOnClickListener(this);
+
+        SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+        try{
+            HitModel.getModel().myHitory = (CalcHitory) Serialization.fromString(sp.getString("calculation", null));
+        }catch(Exception e){
+            
+        }
     }
 
     @Override

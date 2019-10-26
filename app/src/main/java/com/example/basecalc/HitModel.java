@@ -1,7 +1,7 @@
-import com.example.basecalc.CalcHitory;
+package com.example.basecalc;
 
 public class HitModel {
-    public static HitModel myHitModel= null;
+    private static HitModel myHitModel= null;
 
     public static HitModel getModel(){
         if (myHitModel == null){

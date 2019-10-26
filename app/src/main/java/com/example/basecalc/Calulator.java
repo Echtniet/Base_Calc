@@ -1,6 +1,9 @@
 package com.example.basecalc;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import static java.lang.Integer.parseInt;
 
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -103,6 +108,11 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     public void onItemClick(View v) {
         TextView outputText = findViewById(R.id.txtResult);
         int viewId = v.getId();
+
+        SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+
+
         if(numCtrlInfo[0] == 0){
             outputText.setText("");
         }
@@ -207,6 +217,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 }else{
                     answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
                     outputText.setText(answer);
+                    HitModel.getModel().myHitory.add(parseInt(answer));
+                    try{
+                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
+                        edit.commit();
+                    }catch(Exception e){
+
+                    }
                 }
                 numCtrlInfo[0] = 0;
                 operator = "/";
@@ -217,6 +234,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 }else{
                     answer = BaseConverer.mul(outputText.getText().toString(), answer, base);
                     outputText.setText(answer);
+                    HitModel.getModel().myHitory.add(parseInt(answer));
+                    try{
+                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
+                        edit.commit();
+                    }catch(Exception e){
+
+                    }
                 }
                 numCtrlInfo[0] = 0;
                 operator = "*";
@@ -227,6 +251,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 }else{
                     answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
                     outputText.setText(answer);
+                    HitModel.getModel().myHitory.add(parseInt(answer));
+                    try{
+                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
+                        edit.commit();
+                    }catch(Exception e){
+
+                    }
                 }
                 numCtrlInfo[0] = 0;
                 operator = "-";
@@ -237,6 +268,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 }else{
                     answer = BaseConverer.add(answer, outputText.getText().toString(), base);
                     outputText.setText(answer);
+                    HitModel.getModel().myHitory.add(parseInt(answer));
+                    try{
+                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
+                        edit.commit();
+                    }catch(Exception e){
+
+                    }
                 }
                 numCtrlInfo[0] = 0;
                 operator = "+";
@@ -245,17 +283,25 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 if (operator == null){ break; }
                 switch (operator){
                     case("+"):
-                        outputText.setText(BaseConverer.add(answer, outputText.getText().toString(), base));
+                        answer = BaseConverer.add(outputText.getText().toString(), answer, base);
                         break;
                     case("-"):
-                        outputText.setText(BaseConverer.sub(answer, outputText.getText().toString(), base));
+                        answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
                         break;
                     case("/"):
-                        outputText.setText(BaseConverer.divide(answer, outputText.getText().toString(), base));
+                        answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
                         break;
                     case("*"):
-                        outputText.setText(BaseConverer.mul(answer, outputText.getText().toString(), base));
+                        answer = BaseConverer.mul(answer, outputText.getText().toString(), base);
                         break;
+                }
+                outputText.setText(answer);
+                HitModel.getModel().myHitory.add(parseInt(answer));
+                try{
+                    edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
+                    edit.commit();
+                }catch(Exception e){
+
                 }
                 operator = null;
                 numCtrlInfo[0] = 0;
