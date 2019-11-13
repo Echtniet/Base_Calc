@@ -48,6 +48,9 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
         TextView display = findViewById(R.id.txtResult);
         String displayText = display.getText().toString();
+        if(displayText.matches("")){
+            displayText = "0";
+        }
         int fromBase = base;
         if(pos == 0){
             base = 2;
