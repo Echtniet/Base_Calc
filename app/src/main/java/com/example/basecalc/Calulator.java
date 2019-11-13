@@ -293,7 +293,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 operator = "+";
                 break;
             case (R.id.btnEquals):
-                if (operator == null){ break; }
+                if (operator == null || outputText.getText().toString().matches("")){ break; }
                 switch (operator){
                     case("+"):
                         Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
@@ -325,7 +325,11 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 numCtrlInfo[1] = 0;
                 break;
             case (R.id.btnDot):
-
+                numCtrlInfo[0]++;
+                if(outputText.getText().toString().matches("") || outputText.getText().toString().matches("0")) {
+                    outputText.setText("0.");
+                    break;
+                } outputText.setText(outputText.getText().toString() + ".");
                 break;
         }
     }
