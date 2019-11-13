@@ -26,8 +26,9 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     /*
         index 0: Num of items in current input buffer
         index 1: Keeps track of the current number being positive or negative
+        index 2: Keeps track of if there has been a parenthesis used in the current string
      */
-    private int[] numCtrlInfo ={0, 0};
+    private int[] numCtrlInfo ={0, 0, 0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,8 +219,21 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 }
                 break;
             case (R.id.btnPren):
-
-                break;
+                if(numCtrlInfo[2] == 0){
+                    outputText.setText(outputText.getText() + "(");
+                    numCtrlInfo[0]++;
+                    numCtrlInfo[2]++;
+                    break;
+                }
+                else if(numCtrlInfo[2] == 1){
+                    outputText.setText(outputText.getText() + ")");
+                    numCtrlInfo[0]++;
+                    numCtrlInfo[2]++;
+                    break;
+                }
+                else {
+                    break;
+                }
             case (R.id.btnDivide):
                 if (answer == null){
                     answer = outputText.getText().toString();
