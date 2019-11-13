@@ -60,7 +60,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         }
         Log.d("CALC-DEBUG", "onItemSelected: Converting the string " + displayText + " from " + fromBase + " to " + base);
         display.setText(BaseConverer.covertBase(displayText, base, fromBase));
-//        recolorItems();
+        recolorItems();
     }
 
     private void recolorItems(){
@@ -96,10 +96,10 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 break;
         }
         for(int bottom = 0; bottom < mergePoint; bottom++){
-
+            btnArr[bottom].setEnabled(true);
         }
         for(int top = mergePoint; top < btnArr.length; top++){
-
+            btnArr[top].setEnabled(false);
         }
     }
 
@@ -202,6 +202,8 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 outputText.setText("0");
                 numCtrlInfo[0] = 0;
                 numCtrlInfo[1] = 0;
+                answer = null;
+                operator = null;
                 break;
             case (R.id.btnPM):
                 if (numCtrlInfo[1] == 0){
