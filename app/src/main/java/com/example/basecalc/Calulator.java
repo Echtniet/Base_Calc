@@ -293,7 +293,8 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 operator = "+";
                 break;
             case (R.id.btnEquals):
-                if (operator == null || outputText.getText().toString().matches("")){ break; }
+                if(outputText.getText().toString().matches("")){numCtrlInfo[0] = 0; outputText.setText("0"); break;}
+                else if(operator == null){ break; }
                 switch (operator){
                     case("+"):
                         Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
