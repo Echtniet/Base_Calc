@@ -235,76 +235,32 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     break;
                 }
             case (R.id.btnDivide):
-                if (answer == null){
-                    answer = outputText.getText().toString();
-                }else{
-                    Log.d("CALC-DEBUG", "onItemClick: Div: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                    answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
-                    outputText.setText(answer);
-                    HitModel.getModel().myHitory.add(parseInt(answer));
-                    try{
-                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
-                        edit.commit();
-                    }catch(Exception e){
-                        Log.d("CALC-DEBUG", "onItemClick: " + e);
-                    }
+                if(outputText.getText().toString().matches("")) {
+                    outputText.setText("0");
+                    break;
                 }
-                numCtrlInfo[0] = 0;
-                operator = "/";
+                outputText.setText(outputText.getText() + "/");
                 break;
             case (R.id.btnMul):
-                if (answer == null){
-                    answer = outputText.getText().toString();
-                }else{
-                    Log.d("CALC-DEBUG", "onItemClick: Mul: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                    answer = BaseConverer.mul(outputText.getText().toString(), answer, base);
-                    outputText.setText(answer);
-                    HitModel.getModel().myHitory.add(parseInt(answer));
-                    try{
-                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
-                        edit.commit();
-                    }catch(Exception e){
-                        Log.d("CALC-DEBUG", "onItemClick: " + e);
-                    }
+                if(outputText.getText().toString().matches("")) {
+                    outputText.setText("0");
+                    break;
                 }
-                numCtrlInfo[0] = 0;
-                operator = "*";
+                outputText.setText(outputText.getText() + "*");
                 break;
             case (R.id.btnMinus):
-                if (answer == null){
-                    answer = outputText.getText().toString();
-                }else{
-                    Log.d("CALC-DEBUG", "onItemClick: Subtracting: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                    answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
-                    outputText.setText(answer);
-                    HitModel.getModel().myHitory.add(parseInt(answer));
-                    try{
-                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
-                        edit.commit();
-                    }catch(Exception e){
-                        Log.d("CALC-DEBUG", "onItemClick: " + e);
-                    }
+                if(outputText.getText().toString().matches("")) {
+                    outputText.setText("0");
+                    break;
                 }
-                numCtrlInfo[0] = 0;
-                operator = "-";
+                outputText.setText(outputText.getText() + "-");
                 break;
             case (R.id.btnPlus):
-                if (answer == null){
-                    answer = outputText.getText().toString();
-                }else{
-                    Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                    answer = BaseConverer.add(answer, outputText.getText().toString(), base);
-                    outputText.setText(answer);
-                    HitModel.getModel().myHitory.add(parseInt(answer));
-                    try{
-                        edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
-                        edit.commit();
-                    }catch(Exception e){
-                        Log.d("CALC-DEBUG", "onItemClick: " + e);
-                    }
+                if(outputText.getText().toString().matches("")) {
+                    outputText.setText("0");
+                    break;
                 }
-                numCtrlInfo[0] = 0;
-                operator = "+";
+                outputText.setText(outputText.getText() + "+");
                 break;
             case (R.id.btnEquals):
                 if(outputText.getText().toString().matches("")){numCtrlInfo[0] = 0; outputText.setText("0"); break;}
