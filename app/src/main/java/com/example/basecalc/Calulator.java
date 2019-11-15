@@ -13,10 +13,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
+
 import static java.lang.Integer.parseInt;
 
 
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private String TAG = "CALC-DEBUG";
     // answer keeps track of the most recent item put into the calculator
     private String answer;
     // operator keeps track of the most recent operator used
@@ -220,13 +225,13 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 break;
             case (R.id.btnPren):
                 if(numCtrlInfo[2] == 0){
-                    outputText.setText(outputText.getText() + "(");
+                    outputText.setText(outputText.getText() + " ( ");
                     numCtrlInfo[0]++;
                     numCtrlInfo[2]++;
                     break;
                 }
                 else if(numCtrlInfo[2] == 1){
-                    outputText.setText(outputText.getText() + ")");
+                    outputText.setText(outputText.getText() + " ) ");
                     numCtrlInfo[0]++;
                     numCtrlInfo[2]++;
                     break;
@@ -239,61 +244,35 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     outputText.setText("0");
                     break;
                 }
-                outputText.setText(outputText.getText() + "/");
+                outputText.setText(outputText.getText() + " / ");
                 break;
             case (R.id.btnMul):
                 if(outputText.getText().toString().matches("")) {
                     outputText.setText("0");
                     break;
                 }
-                outputText.setText(outputText.getText() + "*");
+                outputText.setText(outputText.getText() + " * ");
                 break;
             case (R.id.btnMinus):
                 if(outputText.getText().toString().matches("")) {
                     outputText.setText("0");
                     break;
                 }
-                outputText.setText(outputText.getText() + "-");
+                outputText.setText(outputText.getText() + " - ");
                 break;
             case (R.id.btnPlus):
                 if(outputText.getText().toString().matches("")) {
                     outputText.setText("0");
                     break;
                 }
-                outputText.setText(outputText.getText() + "+");
+                outputText.setText(outputText.getText() + " + ");
                 break;
             case (R.id.btnEquals):
-                if(outputText.getText().toString().matches("")){numCtrlInfo[0] = 0; outputText.setText("0"); break;}
-                else if(operator == null){ break; }
-                switch (operator){
-                    case("+"):
-                        Log.d("CALC-DEBUG", "onItemClick: Adding: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                        answer = BaseConverer.add(outputText.getText().toString(), answer, base);
-                        break;
-                    case("-"):
-                        Log.d("CALC-DEBUG", "onItemClick: Subtract: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                        answer = BaseConverer.sub(outputText.getText().toString(), answer, base);
-                        break;
-                    case("/"):
-                        Log.d("CALC-DEBUG", "onItemClick: Dividing: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                        answer = BaseConverer.divide(answer, outputText.getText().toString(), base);
-                        break;
-                    case("*"):
-                        Log.d("CALC-DEBUG", "onItemClick: Multiply: " + answer + " to " + outputText.getText().toString() + " in " + base);
-                        answer = BaseConverer.mul(answer, outputText.getText().toString(), base);
-                        break;
-                }
-                outputText.setText(answer);
-                HitModel.getModel().myHitory.add(parseInt(answer));
-                try{
-                    edit.putString("calculation",Serialization.toString(HitModel.getModel().myHitory));
-                    edit.commit();
-                }catch(Exception e){
-                    Log.d("CALC-DEBUG", "onItemClick: " + e);
-                }
-                operator = null;
-                numCtrlInfo[0] = 0;
-                numCtrlInfo[1] = 0;
+                if(outputText.getText().toString().matches("")){outputText.setText("0"); break;}
+                int temp = parseExp(outputText.getText().toString().split(" "));
+                Log.d(TAG, "onItemClick: in equals " + temp);
+                outputText.setText("" + temp);
+                Log.d(TAG, "onItemClick: Out of Equals");
                 break;
             case (R.id.btnDot):
                 numCtrlInfo[0]++;
@@ -303,5 +282,114 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 } outputText.setText(outputText.getText().toString() + ".");
                 break;
         }
+    }
+
+    // Implementation of the Shuntington-Yard Algo
+    private int parseExp(String[] calculation){
+        Log.d(TAG, "parseExp: start");
+        Stack<String> output = new Stack<>();
+        Stack<String> operator = new Stack<>();
+        try{
+        for(String token:calculation){
+            if(isOperator(token)){
+                if(operator.size() == 0){operator.push(token); continue;}
+                while(!precidence(operator.peek(), token) || !operator.peek().contains("(")){
+                    output.push(operator.pop());
+                }
+                operator.push(token);
+                continue;
+            }
+            else if(token.contains("(")){
+                operator.push(token);
+                continue;
+            }
+            else if(token.contains(")")) {
+                while(!operator.peek().contains("(")){
+                    output.push(operator.pop());
+                }
+                operator.pop();
+                continue;
+            }
+            output.push(token);
+        }
+        while(!operator.empty()){
+            output.push(operator.pop());
+        }}
+        catch(Exception e){
+            Log.d(TAG, "parseExp: Exception" + e);
+        }
+        int temp = parseStack(output);
+        Log.d(TAG, "parseExp: temp: " + temp);
+        return temp;
+    }
+
+    // why did i do this to myself
+    private int parseStack(Stack<String> math){
+        Log.d(TAG, "parseStack: start");
+        String[] strArr = new String[math.size()];
+        math.copyInto(strArr);
+        ArrayList<String> stack = new ArrayList<>();
+        stack.addAll(Arrays.asList(strArr));
+
+        while(stack.size() > 1){
+            for(int i = 2; i < stack.size(); i++){
+                if(isOperator(stack.get(i))){
+                    if(stack.get(i).contains("*")){
+                        String temp = BaseConverer.mul(stack.get(i-1), stack.get(i-2), base);
+                        stack.add(i+1, temp);
+                        stack.remove(i);
+                        stack.remove(i-1);
+                        stack.remove(i-2);
+                    }
+                    else if(stack.get(i).contains("/")){
+                        String temp = BaseConverer.divide(stack.get(i-1), stack.get(i-2), base);
+                        stack.add(i+1, temp);
+                        stack.remove(i);
+                        stack.remove(i-1);
+                        stack.remove(i-2);
+                    }
+                    else if(stack.get(i).contains("+")){
+                        String temp = BaseConverer.add(stack.get(i-1), stack.get(i-2), base);
+                        stack.add(i+1, temp);
+                        stack.remove(i);
+                        stack.remove(i-1);
+                        stack.remove(i-2);
+                    }
+                    else if(stack.get(i).contains("-")){
+                        String temp = BaseConverer.sub(stack.get(i-1), stack.get(i-2), base);
+                        stack.add(i+1, temp);
+                        stack.remove(i);
+                        stack.remove(i-1);
+                        stack.remove(i-2);
+                    }
+                }
+            }
+        }
+        Log.d(TAG, "parseStack: " + Integer.parseInt(stack.get(0)));
+        return Integer.parseInt(stack.get(0));
+    }
+
+    private boolean precidence(String topOfStack, String token){
+        byte top = 0, tok = 0;
+        String[] operators = {"-", "+", "/", "*"};
+        for(byte i = 0; i < operators.length; i++){
+            if(operators[i].contains(topOfStack)){
+                top = i;
+            }
+            if(operators[i].contains(token)){
+                tok = i;
+            }
+        }
+        return top <= tok;
+    }
+
+    private boolean isOperator(String input){
+        String[] opArr = {"+", "-", "*", "/"};
+        for(String i:opArr){
+            if(input.contains(i)){
+                return true;
+            }
+        }
+        return false;
     }
 }
