@@ -32,7 +32,7 @@ public class BaseConverer {
 
         mulIn10 *= byIn10;
 
-        return BaseConverer.covertBase("" + byIn10, in , 10);
+        return BaseConverer.covertBase("" + mulIn10, in , 10);
     }
 
     public static String divide(String divide, String by, int in){
