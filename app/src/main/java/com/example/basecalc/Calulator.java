@@ -286,37 +286,48 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
 
     // Implementation of the Shuntington-Yard Algo
     private int parseExp(String[] calculation){
+        boolean whileLoop;
         Log.d(TAG, "parseExp: start");
         Stack<String> output = new Stack<>();
         Stack<String> operator = new Stack<>();
         try{
-        for(String token:calculation){
-            if(isOperator(token)){
-                if(operator.size() == 0){operator.push(token); continue;}
-                while(!precidence(operator.peek(), token) || !operator.peek().contains("(")){
-                    output.push(operator.pop());
+            for(String token:calculation){
+                Log.d(TAG, "parseExp: token " + token);
+                Log.d(TAG, "parseExp: output "+ output);
+                Log.d(TAG, "parseExp: operator " + operator);
+                if(isOperator(token)){
+                    if(operator.size() == 0){operator.push(token); continue;}
+                    whileLoop = !precidence(operator.peek(), token) || !operator.peek().contains("(");
+                    while(whileLoop){
+                        whileLoop = !precidence(operator.peek(), token) || !operator.peek().contains("(");
+                        output.push(operator.pop());
+                        if(operator.size() == 0 ){
+                            whileLoop = false;
+                        }
+                    }
+                    operator.push(token);
+                    continue;
                 }
-                operator.push(token);
-                continue;
-            }
-            else if(token.contains("(")){
-                operator.push(token);
-                continue;
-            }
-            else if(token.contains(")")) {
-                while(!operator.peek().contains("(")){
-                    output.push(operator.pop());
+                else if(token.contains("(")){
+                    operator.push(token);
+                    continue;
                 }
-                operator.pop();
-                continue;
+                else if(token.contains(")")) {
+                    while(!operator.peek().contains("(")){
+                        output.push(operator.pop());
+                    }
+                    operator.pop();
+                    continue;
+                }
+                output.push(token);
             }
-            output.push(token);
+            while(!operator.empty()){
+                output.push(operator.pop());
+            }
         }
-        while(!operator.empty()){
-            output.push(operator.pop());
-        }}
         catch(Exception e){
-            Log.d(TAG, "parseExp: Exception" + e);
+            Log.d(TAG, "parseExp: Exception" + e.getCause());
+            e.printStackTrace();
         }
         int temp = parseStack(output);
         Log.d(TAG, "parseExp: temp: " + temp);
@@ -330,25 +341,29 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         math.copyInto(strArr);
         ArrayList<String> stack = new ArrayList<>();
         stack.addAll(Arrays.asList(strArr));
-
+        Log.d(TAG, "parseStack: srtArr" + stack);
         while(stack.size() > 1){
             for(int i = 2; i < stack.size(); i++){
+                Log.d(TAG, "parseStack: stack " + stack);
                 if(isOperator(stack.get(i))){
                     if(stack.get(i).contains("*")){
-                        String temp = BaseConverer.mul(stack.get(i-1), stack.get(i-2), base);
+                        Log.d(TAG, "parseStack: Multiplying " + stack.get(i-2) + " by " + stack.get(i-1));
+                        String temp = BaseConverer.mul(stack.get(i-2), stack.get(i-1), base);
                         stack.add(i+1, temp);
                         stack.remove(i);
                         stack.remove(i-1);
                         stack.remove(i-2);
                     }
                     else if(stack.get(i).contains("/")){
-                        String temp = BaseConverer.divide(stack.get(i-1), stack.get(i-2), base);
+                        Log.d(TAG, "parseStack: Dividing " + stack.get(i-2) + " by " + stack.get(i-1));
+                        String temp = BaseConverer.divide(stack.get(i-2), stack.get(i-1), base);
                         stack.add(i+1, temp);
                         stack.remove(i);
                         stack.remove(i-1);
                         stack.remove(i-2);
                     }
                     else if(stack.get(i).contains("+")){
+                        Log.d(TAG, "parseStack: Adding " + stack.get(i-2) + " by " + stack.get(i-1));
                         String temp = BaseConverer.add(stack.get(i-1), stack.get(i-2), base);
                         stack.add(i+1, temp);
                         stack.remove(i);
@@ -356,6 +371,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         stack.remove(i-2);
                     }
                     else if(stack.get(i).contains("-")){
+                        Log.d(TAG, "parseStack: Subtracting " + stack.get(i-2) + " by " + stack.get(i-1));
                         String temp = BaseConverer.sub(stack.get(i-1), stack.get(i-2), base);
                         stack.add(i+1, temp);
                         stack.remove(i);
@@ -380,7 +396,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 tok = i;
             }
         }
-        return top <= tok;
+        return top > tok;
     }
 
     private boolean isOperator(String input){
