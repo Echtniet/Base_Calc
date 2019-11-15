@@ -68,7 +68,18 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             base = 16;
         }
         Log.d("CALC-DEBUG", "onItemSelected: Converting the string " + displayText + " from " + fromBase + " to " + base);
-        display.setText(BaseConverer.covertBase(displayText, base, fromBase));
+//        display.setText(BaseConverer.covertBase(displayText, base, fromBase));
+        String[] outputText = displayText.split(" ");
+        for(int i = 0; i < outputText.length; i++){
+            if(isOperator(outputText[i]) || outputText[i].contains("(") || outputText[i].contains(")")){
+                outputText[i] = BaseConverer.covertBase(outputText[i], base, fromBase);
+            }
+        }
+        String output = "";
+        for(String x:outputText){
+            output += x + " ";
+        }
+        display.setText(output);
         recolorItems();
     }
 
@@ -87,7 +98,8 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 findViewById(R.id.btnC),
                 findViewById(R.id.btnD),
                 findViewById(R.id.btnE),
-                findViewById(R.id.btnF)
+                findViewById(R.id.btnF),
+                findViewById(R.id.btnThisIsADumbFix)
         };
         int mergePoint = 0;
         switch (base) {
@@ -101,7 +113,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                 mergePoint = 8;
                 break;
             case (16):
-                mergePoint = 13;
+                mergePoint = 14;
                 break;
         }
         for(int bottom = 0; bottom < mergePoint; bottom++){
