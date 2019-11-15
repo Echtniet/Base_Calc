@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try{
             HitModel.getModel().myHitory = (CalcHitory) Serialization.fromString(sp.getString("calculation", null));
         }catch(Exception e){
-            
+
         }
     }
 
