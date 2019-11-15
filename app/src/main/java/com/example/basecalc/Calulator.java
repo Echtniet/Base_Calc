@@ -79,7 +79,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         }
         for(int i = 0; i < outputText.size(); i++){
             Log.d(TAG, "onItemSelected: " + outputText.get(i));
-            if(isOperator(outputText.get(i))){
+            if(!isOperator(outputText.get(i))){
                 outputText.set(i, BaseConverer.covertBase(outputText.get(i), base, fromBase));
             }
         }
