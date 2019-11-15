@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
@@ -54,6 +55,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
         TextView display = findViewById(R.id.txtResult);
         String displayText = display.getText().toString();
+        Log.d(TAG, "onItemSelected: PRE-EVERYTHING STUFF " + displayText);
         if(displayText.matches("")){
             displayText = "0";
         }
@@ -69,10 +71,16 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         }
         Log.d("CALC-DEBUG", "onItemSelected: Converting the string " + displayText + " from " + fromBase + " to " + base);
 //        display.setText(BaseConverer.covertBase(displayText, base, fromBase));
-        String[] outputText = displayText.split(" ");
-        for(int i = 0; i < outputText.length; i++){
-            if(isOperator(outputText[i]) || outputText[i].contains("(") || outputText[i].contains(")")){
-                outputText[i] = BaseConverer.covertBase(outputText[i], base, fromBase);
+        String[] outputTemp = displayText.split(" ");
+        ArrayList<String> outputText = new ArrayList<>();
+        for(String x:outputTemp){
+            Log.d(TAG, "onItemSelected: OutputString " + outputText);
+            outputText.add(x);
+        }
+        for(int i = 0; i < outputText.size(); i++){
+            Log.d(TAG, "onItemSelected: " + outputText.get(i));
+            if(isOperator(outputText.get(i)) || outputText.get(i).contains("(") || outputText.get(i).contains(")")){
+                outputText.set(i, BaseConverer.covertBase(outputText.get(i), base, fromBase));
             }
         }
         String output = "";
@@ -118,9 +126,11 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         }
         for(int bottom = 0; bottom < mergePoint; bottom++){
             btnArr[bottom].setEnabled(true);
+            btnArr[bottom].setBackground(getDrawable(R.drawable.roundbuttongray));
         }
         for(int top = mergePoint; top < btnArr.length; top++){
             btnArr[top].setEnabled(false);
+            btnArr[top].setBackground(getDrawable(R.drawable.roundbuttongrayhalf));
         }
     }
 
