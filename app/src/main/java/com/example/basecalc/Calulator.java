@@ -140,169 +140,205 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     public void onItemClick(View v) {
-        TextView outputText = findViewById(R.id.txtResult);
-        int viewId = v.getId();
+        try {
+            TextView outputText = findViewById(R.id.txtResult);
+            int viewId = v.getId();
 
-        SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
+            SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sp.edit();
 
 
-        if(numCtrlInfo[0] == 0){
-            outputText.setText("");
-        }
-        switch (viewId) {
-            case (R.id.btn0):
-                outputText.setText(outputText.getText().toString() + "0");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn1):
-                outputText.setText(outputText.getText().toString() + "1");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn2):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "2");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn3):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "3");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn4):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "4");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn5):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "5");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn6):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "6");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn7):
-                if(base == 2){ break; }
-                outputText.setText(outputText.getText().toString() + "7");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn8):
-                if(base == 2 || base == 8){ break; }
-                outputText.setText(outputText.getText().toString() + "8");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btn9):
-                if(base == 2 || base == 8){ break; }
-                outputText.setText(outputText.getText().toString() + "9");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnA):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "a");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnB):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "b");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnC):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "c");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnD):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "d");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnE):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "e");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnF):
-                if(base != 16){ break; }
-                outputText.setText(outputText.getText().toString() + "f");
-                numCtrlInfo[0]++;
-                break;
-            case (R.id.btnClear):
-                outputText.setText("0");
-                numCtrlInfo[0] = 0;
-                numCtrlInfo[1] = 0;
-                answer = null;
-                operator = null;
-                break;
-            case (R.id.btnPM):
-                if (numCtrlInfo[1] == 0){
-                    outputText.setText("- " + outputText.getText().toString());
-                    numCtrlInfo[1] = 1;
-                } else {
-                    outputText.setText(outputText.getText().toString().replace("- ", ""));
+            if (numCtrlInfo[0] == 0) {
+                outputText.setText("");
+            }
+            switch (viewId) {
+                case (R.id.btn0):
+                    outputText.setText(outputText.getText().toString() + "0");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn1):
+                    outputText.setText(outputText.getText().toString() + "1");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn2):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "2");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn3):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "3");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn4):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "4");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn5):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "5");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn6):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "6");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn7):
+                    if (base == 2) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "7");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn8):
+                    if (base == 2 || base == 8) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "8");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btn9):
+                    if (base == 2 || base == 8) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "9");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnA):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "a");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnB):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "b");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnC):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "c");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnD):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "d");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnE):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "e");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnF):
+                    if (base != 16) {
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + "f");
+                    numCtrlInfo[0]++;
+                    break;
+                case (R.id.btnClear):
+                    outputText.setText("0");
+                    numCtrlInfo[0] = 0;
                     numCtrlInfo[1] = 0;
-                }
-                break;
-            case (R.id.btnPren):
-                if(numCtrlInfo[2] == 0){
-                    outputText.setText(outputText.getText() + " ( ");
+                    answer = null;
+                    operator = null;
+                    break;
+                case (R.id.btnPM):
+                    if (numCtrlInfo[1] == 0) {
+                        outputText.setText("- " + outputText.getText().toString());
+                        numCtrlInfo[1] = 1;
+                    } else {
+                        outputText.setText(outputText.getText().toString().replace("- ", ""));
+                        numCtrlInfo[1] = 0;
+                    }
+                    break;
+                case (R.id.btnPren):
+                    if (numCtrlInfo[2] == 0) {
+                        outputText.setText(outputText.getText() + " ( ");
+                        numCtrlInfo[0]++;
+                        numCtrlInfo[2]++;
+                        break;
+                    } else if (numCtrlInfo[2] == 1) {
+                        outputText.setText(outputText.getText() + " ) ");
+                        numCtrlInfo[0]++;
+                        numCtrlInfo[2]++;
+                        break;
+                    } else {
+                        break;
+                    }
+                case (R.id.btnDivide):
+                    if (outputText.getText().toString().matches("")) {
+                        outputText.setText("0");
+                        break;
+                    }
+                    outputText.setText(outputText.getText() + " / ");
+                    break;
+                case (R.id.btnMul):
+                    if (outputText.getText().toString().matches("")) {
+                        outputText.setText("0");
+                        break;
+                    }
+                    outputText.setText(outputText.getText() + " * ");
+                    break;
+                case (R.id.btnMinus):
+                    if (outputText.getText().toString().matches("")) {
+                        outputText.setText("0");
+                        break;
+                    }
+                    outputText.setText(outputText.getText() + " - ");
+                    break;
+                case (R.id.btnPlus):
+                    if (outputText.getText().toString().matches("")) {
+                        outputText.setText("0");
+                        break;
+                    }
+                    outputText.setText(outputText.getText() + " + ");
+                    break;
+                case (R.id.btnEquals):
+                    if (outputText.getText().toString().matches("")) {
+                        outputText.setText("0");
+                        break;
+                    }
+                    int temp = parseExp(outputText.getText().toString().split(" "));
+                    Log.d(TAG, "onItemClick: in equals " + temp);
+                    outputText.setText("" + temp);
+                    Log.d(TAG, "onItemClick: Out of Equals");
+                    break;
+                case (R.id.btnDot):
                     numCtrlInfo[0]++;
-                    numCtrlInfo[2]++;
+                    if (outputText.getText().toString().matches("") || outputText.getText().toString().matches("0")) {
+                        outputText.setText("0.");
+                        break;
+                    }
+                    outputText.setText(outputText.getText().toString() + ".");
                     break;
-                }
-                else if(numCtrlInfo[2] == 1){
-                    outputText.setText(outputText.getText() + " ) ");
-                    numCtrlInfo[0]++;
-                    numCtrlInfo[2]++;
-                    break;
-                }
-                else {
-                    break;
-                }
-            case (R.id.btnDivide):
-                if(outputText.getText().toString().matches("")) {
-                    outputText.setText("0");
-                    break;
-                }
-                outputText.setText(outputText.getText() + " / ");
-                break;
-            case (R.id.btnMul):
-                if(outputText.getText().toString().matches("")) {
-                    outputText.setText("0");
-                    break;
-                }
-                outputText.setText(outputText.getText() + " * ");
-                break;
-            case (R.id.btnMinus):
-                if(outputText.getText().toString().matches("")) {
-                    outputText.setText("0");
-                    break;
-                }
-                outputText.setText(outputText.getText() + " - ");
-                break;
-            case (R.id.btnPlus):
-                if(outputText.getText().toString().matches("")) {
-                    outputText.setText("0");
-                    break;
-                }
-                outputText.setText(outputText.getText() + " + ");
-                break;
-            case (R.id.btnEquals):
-                if(outputText.getText().toString().matches("")){outputText.setText("0"); break;}
-                int temp = parseExp(outputText.getText().toString().split(" "));
-                Log.d(TAG, "onItemClick: in equals " + temp);
-                outputText.setText("" + temp);
-                Log.d(TAG, "onItemClick: Out of Equals");
-                break;
-            case (R.id.btnDot):
-                numCtrlInfo[0]++;
-                if(outputText.getText().toString().matches("") || outputText.getText().toString().matches("0")) {
-                    outputText.setText("0.");
-                    break;
-                } outputText.setText(outputText.getText().toString() + ".");
-                break;
+            }
+        } catch(Exception e){
+            TextView output = findViewById(R.id.txtResult);
+            output.setText("");
+            numCtrlInfo[0] = 0;
         }
     }
 
