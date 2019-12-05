@@ -292,6 +292,15 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             case (R.id.btnEquals):
                 if(outputText.getText().toString().matches("")){outputText.setText("0"); break;}
                 int temp = parseExp(outputText.getText().toString().split(" "));
+                HitModel.getModel().myHitory.add(new CalcObject("" + temp, "" + base));
+                String serialized = "";
+                try{
+                    serialized = Serialization.toString(HitModel.getModel().myHitory);
+                }catch (Exception e){
+                    Log.d("Fail", "Did not save");
+                }
+                edit.putString("calculation", serialized);
+                edit.commit();
                 Log.d(TAG, "onItemClick: in equals " + temp);
                 outputText.setText("" + temp);
                 Log.d(TAG, "onItemClick: Out of Equals");

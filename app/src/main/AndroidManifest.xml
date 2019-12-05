@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".CoversionActivity"></activity>
-        <activity android:name=".TimeConerter"></activity>
+        <activity android:name=".Hitory"></activity>
+        <activity android:name=".CoversionActivity" />
+        <activity android:name=".TimeConerter" />
         <activity android:name=".Calulator" />
         <activity android:name=".MainActivity">
             <intent-filter>

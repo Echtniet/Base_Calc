@@ -10,6 +10,10 @@ public class HitModel {
         return myHitModel;
     }
 
+    public int size(){
+        return myHitory.size();
+    }
+
     public CalcHitory myHitory;
 
     private HitModel(){
@@ -17,6 +21,6 @@ public class HitModel {
     }
 
     private void loadHitModel(){
-
+        //myHitory.add("10");
     }
 }

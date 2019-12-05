@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,11 +26,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnCalculator = findViewById(R.id.btnCalculator);
         btnCalculator.setOnClickListener(this);
 
+        Button btnHitory = findViewById(R.id.btnHitory);
+        btnHitory.setOnClickListener(this);
+
         SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
         try{
-            HitModel.getModel().myHitory = (CalcHitory) Serialization.fromString(sp.getString("calculation", null));
+            HitModel.getModel().myHitory = (CalcHitory) Serialization.fromString(sp.getString("calculation", ""));
         }catch(Exception e){
-
+            Log.d("Fail", "Fail");
+            e.printStackTrace();
         }
     }
 
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnCalculator:
                 ini = new Intent(this, Calulator.class);
+                break;
+            case R.id.btnHitory:
+                ini = new Intent(this, Hitory.class);
                 break;
         }
 
