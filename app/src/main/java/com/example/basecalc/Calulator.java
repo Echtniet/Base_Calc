@@ -24,11 +24,13 @@ import static java.lang.Integer.parseInt;
 public class Calulator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String TAG = "CALC-DEBUG";
     // answer keeps track of the most recent item put into the calculator
-    private String answer;
+    private String answer = null;
     // operator keeps track of the most recent operator used
-    private String operator;
+    private String operator = null;
     // base holds the current base being used
     private int base = 10;
+    private String in1 = null;
+    boolean newValue = true;
     /*
         index 0: Num of items in current input buffer
         index 1: Keeps track of the current number being positive or negative
@@ -54,11 +56,7 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> adapter, View v, int pos, long id) {
         TextView display = findViewById(R.id.txtResult);
-        String displayText = display.getText().toString();
-        Log.d(TAG, "onItemSelected: PRE-EVERYTHING STUFF " + displayText);
-        if(displayText.matches("")){
-            displayText = "0";
-        }
+
         int fromBase = base;
         if(pos == 0){
             base = 2;
@@ -69,25 +67,17 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
         }else {
             base = 16;
         }
-        Log.d("CALC-DEBUG", "onItemSelected: Converting the string " + displayText + " from " + fromBase + " to " + base);
-//        display.setText(BaseConverer.covertBase(displayText, base, fromBase));
-        String[] outputTemp = displayText.split(" ");
-        ArrayList<String> outputText = new ArrayList<>();
-        for(String x:outputTemp){
-            Log.d(TAG, "onItemSelected: OutputString " + outputText);
-            outputText.add(x);
+
+
+        if(answer != null){
+            answer = BaseConverer.covertBase(answer, base, fromBase);
         }
-        for(int i = 0; i < outputText.size(); i++){
-            Log.d(TAG, "onItemSelected: " + outputText.get(i));
-            if(!isOperator(outputText.get(i))){
-                outputText.set(i, BaseConverer.covertBase(outputText.get(i), base, fromBase));
-            }
+        if(in1 != null){
+            in1 = BaseConverer.covertBase(in1, base, fromBase);
         }
-        String output = "";
-        for(String x:outputText){
-            output += x + " ";
-        }
-        display.setText(output);
+
+
+        display.setText(BaseConverer.covertBase(display.getText().toString(), base, fromBase));
         recolorItems();
     }
 
@@ -148,115 +138,147 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
             SharedPreferences.Editor edit = sp.edit();
 
 
-            if (numCtrlInfo[0] == 0) {
+            /*if (numCtrlInfo[0] == 0) {
                 outputText.setText("");
-            }
+            }*/
             switch (viewId) {
                 case (R.id.btn0):
-                    outputText.setText(outputText.getText().toString() + "0");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "0");
+                    else
+                        outputText.setText("0");
                     break;
                 case (R.id.btn1):
-                    outputText.setText(outputText.getText().toString() + "1");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "1");
+                    else
+                        outputText.setText("1");
                     break;
                 case (R.id.btn2):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "2");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "2");
+                    else
+                        outputText.setText("2");
                     break;
                 case (R.id.btn3):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "3");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "3");
+                    else
+                        outputText.setText("3");
                     break;
                 case (R.id.btn4):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "4");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "4");
+                    else
+                        outputText.setText("4");
                     break;
                 case (R.id.btn5):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "5");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "5");
+                    else
+                        outputText.setText("5");
                     break;
                 case (R.id.btn6):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "6");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "6");
+                    else
+                        outputText.setText("6");
                     break;
                 case (R.id.btn7):
                     if (base == 2) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "7");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "7");
+                    else
+                        outputText.setText("7");
                     break;
                 case (R.id.btn8):
                     if (base == 2 || base == 8) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "8");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "8");
+                    else
+                        outputText.setText("8");
                     break;
                 case (R.id.btn9):
                     if (base == 2 || base == 8) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "9");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "9");
+                    else
+                        outputText.setText("9");
                     break;
                 case (R.id.btnA):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "a");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "A");
+                    else
+                        outputText.setText("A");
                     break;
                 case (R.id.btnB):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "b");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "B");
+                    else
+                        outputText.setText("B");
                     break;
                 case (R.id.btnC):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "c");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "C");
+                    else
+                        outputText.setText("C");
                     break;
                 case (R.id.btnD):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "d");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "D");
+                    else
+                        outputText.setText("D");
                     break;
                 case (R.id.btnE):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "e");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "E");
+                    else
+                        outputText.setText("E");
                     break;
                 case (R.id.btnF):
                     if (base != 16) {
                         break;
                     }
-                    outputText.setText(outputText.getText().toString() + "f");
-                    numCtrlInfo[0]++;
+                    if (!newValue)
+                        outputText.setText(outputText.getText().toString() + "F");
+                    else
+                        outputText.setText("F");
                     break;
                 case (R.id.btnClear):
                     outputText.setText("0");
@@ -264,18 +286,19 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     numCtrlInfo[1] = 0;
                     answer = null;
                     operator = null;
+                    in1 = null;
                     break;
                 case (R.id.btnPM):
-                    if (numCtrlInfo[1] == 0) {
+                    /*if (numCtrlInfo[1] == 0) {
                         outputText.setText("- " + outputText.getText().toString());
                         numCtrlInfo[1] = 1;
                     } else {
                         outputText.setText(outputText.getText().toString().replace("- ", ""));
                         numCtrlInfo[1] = 0;
-                    }
+                    }*/
                     break;
                 case (R.id.btnPren):
-                    if (numCtrlInfo[2] == 0) {
+                    /*if (numCtrlInfo[2] == 0) {
                         outputText.setText(outputText.getText() + " ( ");
                         numCtrlInfo[0]++;
                         numCtrlInfo[2]++;
@@ -287,47 +310,81 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                         break;
                     } else {
                         break;
-                    }
+                    }*/
+                    break;
                 case (R.id.btnDivide):
-                    if (outputText.getText().toString().matches("")) {
-                        outputText.setText("0");
-                        break;
+                    if(newValue){
+                        operator = "/";
+                    }else {
+                        if (answer == null) {
+                            answer = outputText.getText().toString();
+                            operator = "/";
+                        } else {
+                            in1 = outputText.getText().toString();
+                            answer = calculate();
+                            outputText.setText(answer);
+                            operator = "/";
+                            HitModel.getModel().myHitory.add(new CalcObject(answer, "" + base));
+                        }
                     }
-                    outputText.setText(outputText.getText() + " / ");
                     break;
                 case (R.id.btnMul):
-                    if (outputText.getText().toString().matches("")) {
-                        outputText.setText("0");
-                        break;
+                    if(newValue){
+                        operator = "*";
+                    }else {
+                        if (answer == null) {
+                            answer = outputText.getText().toString();
+                            operator = "*";
+                        } else {
+                            in1 = outputText.getText().toString();
+                            answer = calculate();
+                            outputText.setText(answer);
+                            operator = "*";
+                            HitModel.getModel().myHitory.add(new CalcObject(answer, "" + base));
+                        }
                     }
-                    outputText.setText(outputText.getText() + " * ");
                     break;
                 case (R.id.btnMinus):
-                    if (outputText.getText().toString().matches("")) {
-                        outputText.setText("0");
-                        break;
+                    if(newValue){
+                        operator = "-";
+                    }else {
+                        if (answer == null) {
+                            answer = outputText.getText().toString();
+                            operator = "-";
+                        } else {
+                            in1 = outputText.getText().toString();
+                            answer = calculate();
+                            outputText.setText(answer);
+                            operator = "-";
+                            HitModel.getModel().myHitory.add(new CalcObject(answer, "" + base));
+                        }
                     }
-                    outputText.setText(outputText.getText() + " - ");
                     break;
                 case (R.id.btnPlus):
-                    if (outputText.getText().toString().matches("")) {
-                        outputText.setText("0");
-                        break;
+                    if(newValue){
+                        operator = "+";
+                    }else {
+                        if (answer == null) {
+                            answer = outputText.getText().toString();
+                            operator = "+";
+                        } else {
+                            in1 = outputText.getText().toString();
+                            answer = calculate();
+                            outputText.setText(answer);
+                            operator = "+";
+                            HitModel.getModel().myHitory.add(new CalcObject(answer, "" + base));
+                        }
                     }
-                    outputText.setText(outputText.getText() + " + ");
                     break;
                 case (R.id.btnEquals):
-                    if (outputText.getText().toString().matches("")) {
-                        outputText.setText("0");
-                        break;
+                    if(answer == null){
+                        answer = outputText.getText().toString();
+                    }else {
+                        in1 = outputText.getText().toString();
+                        answer = calculate().toUpperCase();
+                        outputText.setText(answer);
+                        HitModel.getModel().myHitory.add(new CalcObject(answer, "" + base));
                     }
-                    int temp = parseExp(outputText.getText().toString().split(" "));
-                    HitModel.getModel().myHitory.add(new CalcObject("" + temp, "" + base));
-                    edit.putString("calculation", Serialization.toString(HitModel.getModel().myHitory));
-                    edit.commit();
-                    Log.d(TAG, "onItemClick: in equals " + temp);
-                    outputText.setText("" + temp);
-                    Log.d(TAG, "onItemClick: Out of Equals");
                     break;
                 case (R.id.btnDot):
                     numCtrlInfo[0]++;
@@ -338,126 +395,39 @@ public class Calulator extends AppCompatActivity implements AdapterView.OnItemSe
                     outputText.setText(outputText.getText().toString() + ".");
                     break;
             }
+            switch (viewId){
+                case R.id.btnDivide:
+                case R.id.btnMinus:
+                case R.id.btnMul:
+                case R.id.btnPlus:
+                case R.id.btnClear:
+                    newValue = true;
+                    break;
+                default:
+                    newValue = false;
+            }
+
         } catch(Exception e){
             TextView output = findViewById(R.id.txtResult);
             output.setText("");
             numCtrlInfo[0] = 0;
         }
+
     }
 
-    // Implementation of the Shuntington-Yard Algo
-    private int parseExp(String[] calculation){
-        boolean whileLoop;
-        Log.d(TAG, "parseExp: start");
-        Stack<String> output = new Stack<>();
-        Stack<String> operator = new Stack<>();
-        try{
-            for(String token:calculation){
-                Log.d(TAG, "parseExp: token " + token);
-                Log.d(TAG, "parseExp: output "+ output);
-                Log.d(TAG, "parseExp: operator " + operator);
-                if(isOperator(token)){
-                    if(operator.size() == 0){operator.push(token); continue;}
-                    whileLoop = !precidence(operator.peek(), token) || !operator.peek().contains("(");
-                    while(whileLoop){
-                        whileLoop = !precidence(operator.peek(), token) || !operator.peek().contains("(");
-                        output.push(operator.pop());
-                        if(operator.size() == 0 ){
-                            whileLoop = false;
-                        }
-                    }
-                    operator.push(token);
-                    continue;
-                }
-                else if(token.contains("(")){
-                    operator.push(token);
-                    continue;
-                }
-                else if(token.contains(")")) {
-                    while(!operator.peek().contains("(")){
-                        output.push(operator.pop());
-                    }
-                    operator.pop();
-                    continue;
-                }
-                output.push(token);
-            }
-            while(!operator.empty()){
-                output.push(operator.pop());
-            }
+    private String calculate(){
+        switch (operator){
+            case "+":
+                return BaseConverer.add(answer, in1, base);
+            case "-":
+                return BaseConverer.sub(in1, answer, base);
+            case "*":
+                return BaseConverer.mul(answer, in1, base);
+            case "/":
+                return BaseConverer.divide(answer, in1, base);
+            default:
+                return "0";
         }
-        catch(Exception e){
-            Log.d(TAG, "parseExp: Exception" + e.getCause());
-            e.printStackTrace();
-        }
-        int temp = parseStack(output);
-        Log.d(TAG, "parseExp: temp: " + temp);
-        return temp;
-    }
-
-    // why did i do this to myself
-    private int parseStack(Stack<String> math){
-        Log.d(TAG, "parseStack: start");
-        String[] strArr = new String[math.size()];
-        math.copyInto(strArr);
-        ArrayList<String> stack = new ArrayList<>();
-        stack.addAll(Arrays.asList(strArr));
-        Log.d(TAG, "parseStack: srtArr" + stack);
-        while(stack.size() > 1){
-            for(int i = 2; i < stack.size(); i++){
-                Log.d(TAG, "parseStack: stack " + stack);
-                if(isOperator(stack.get(i))){
-                    if(stack.get(i).contains("*")){
-                        Log.d(TAG, "parseStack: Multiplying " + stack.get(i-2) + " by " + stack.get(i-1));
-                        String temp = BaseConverer.mul(stack.get(i-2), stack.get(i-1), base);
-                        stack.add(i+1, temp);
-                        stack.remove(i);
-                        stack.remove(i-1);
-                        stack.remove(i-2);
-                    }
-                    else if(stack.get(i).contains("/")){
-                        Log.d(TAG, "parseStack: Dividing " + stack.get(i-2) + " by " + stack.get(i-1));
-                        String temp = BaseConverer.divide(stack.get(i-2), stack.get(i-1), base);
-                        stack.add(i+1, temp);
-                        stack.remove(i);
-                        stack.remove(i-1);
-                        stack.remove(i-2);
-                    }
-                    else if(stack.get(i).contains("+")){
-                        Log.d(TAG, "parseStack: Adding " + stack.get(i-2) + " by " + stack.get(i-1));
-                        String temp = BaseConverer.add(stack.get(i-1), stack.get(i-2), base);
-                        stack.add(i+1, temp);
-                        stack.remove(i);
-                        stack.remove(i-1);
-                        stack.remove(i-2);
-                    }
-                    else if(stack.get(i).contains("-")){
-                        Log.d(TAG, "parseStack: Subtracting " + stack.get(i-2) + " by " + stack.get(i-1));
-                        String temp = BaseConverer.sub(stack.get(i-1), stack.get(i-2), base);
-                        stack.add(i+1, temp);
-                        stack.remove(i);
-                        stack.remove(i-1);
-                        stack.remove(i-2);
-                    }
-                }
-            }
-        }
-        Log.d(TAG, "parseStack: " + Integer.parseInt(stack.get(0)));
-        return Integer.parseInt(stack.get(0));
-    }
-
-    private boolean precidence(String topOfStack, String token){
-        byte top = 0, tok = 0;
-        String[] operators = {"-", "+", "/", "*"};
-        for(byte i = 0; i < operators.length; i++){
-            if(operators[i].contains(topOfStack)){
-                top = i;
-            }
-            if(operators[i].contains(token)){
-                tok = i;
-            }
-        }
-        return top > tok;
     }
 
     private boolean isOperator(String input){

@@ -18,6 +18,7 @@ public class Hitory extends AppCompatActivity {
     private HitoryAdapter hitoryServer = null;
     private RecyclerView hitoryRecycler = null;
     private GestureDetectorCompat detector = null;
+    private int pos = -1;
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener{
         public boolean onSingleTapConfirmed(MotionEvent e){
@@ -27,6 +28,7 @@ public class Hitory extends AppCompatActivity {
                 if (holder instanceof HitoryAdapter.HitoryViewHolder){
                     int position = holder.getAdapterPosition();
                     //goToConverter(position);
+                    pos = position;
                     return true;
                 }
             }
