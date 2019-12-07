@@ -15,6 +15,7 @@ public class TimeConerter extends AppCompatActivity {
 
     private Spinner convertFrom;
     private Spinner convertTo;
+    private EditText input;
 
 
     @Override
@@ -27,13 +28,20 @@ public class TimeConerter extends AppCompatActivity {
         convertFrom.setSelection(0, false);
         convertTo.setSelection(1, false);
 
-        EditText input = findViewById(R.id.txtToConvert2);
+        input = findViewById(R.id.txtToConvert2);
 
         input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if(i == EditorInfo.IME_ACTION_DONE){
-                    outputClicked();
+                    TextView output = findViewById(R.id.timeOutTV);
+
+                    if(!input.getText().toString().matches("")) {
+                        outputClicked();
+                    }
+//                    else{
+//                        output.setText(0);
+//                    }
                 }
                 return false;
             }
@@ -77,6 +85,9 @@ public class TimeConerter extends AppCompatActivity {
             }
             output.setText(Double.toString(converted));
         }
+//        else{
+//            output.setText(0);
+//        }
     }
     public double secToOther(Double timeToConvert, int toPos){
         Double answer = 0.0;
