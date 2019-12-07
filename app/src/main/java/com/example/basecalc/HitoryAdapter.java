@@ -41,8 +41,8 @@ public class HitoryAdapter extends RecyclerView.Adapter<HitoryAdapter.HitoryView
         TextView tvResult = held.findViewById(R.id.tvResult);
         TextView tvBase = held.findViewById(R.id.tvBase);
 
-        tvResult.setText(myModel.myHitory.get(position).value);
-        tvBase.setText(myModel.myHitory.get(position).base);
+        tvResult.setText("Result: " + myModel.myHitory.get(position).value);
+        tvBase.setText("Base: " + myModel.myHitory.get(position).base);
     }
 
     public int getItemCount(){return myModel.size();}

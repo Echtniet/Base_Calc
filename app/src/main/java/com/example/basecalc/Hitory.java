@@ -5,6 +5,7 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -25,12 +26,17 @@ public class Hitory extends AppCompatActivity {
                 RecyclerView.ViewHolder holder = hitoryRecycler.getChildViewHolder(view);
                 if (holder instanceof HitoryAdapter.HitoryViewHolder){
                     int position = holder.getAdapterPosition();
-                    // go to sam's page
+                    //goToConverter(position);
                     return true;
                 }
             }
             return false;
         }
+    }
+
+    private void goToConverter(int position){
+        Intent ini =  new Intent(this, BaseConverer.class);
+        startActivity(ini);
     }
 
 
