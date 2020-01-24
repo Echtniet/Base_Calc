@@ -7,7 +7,7 @@ Base Calculator Application for Mobile Computing - Android.
 
 * **Samuel Eagan** - [Github](https://github.com/samueleagan)
 * **Clinton Davelaar** - [Github](https://github.com/Echtniet)
-* **Alex Braymer** - [Github](https://github.com/kiyuzi)
+* **Paige Braymer** - [Github](https://github.com/kiyuzi)
 * **Kenny Grannas** - [Github](https://github.com/Ace0320)
 
 
